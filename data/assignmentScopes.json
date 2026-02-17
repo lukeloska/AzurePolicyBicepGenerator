@@ -1,0 +1,14 @@
+[
+  {
+    "value": "Subscription",
+    "label": "Subscription"
+  },
+  {
+    "value": "ManagementGroup",
+    "label": "Management Group"
+  },
+  {
+    "value": "ResourceGroup",
+    "label": "Resource Group"
+  }
+]

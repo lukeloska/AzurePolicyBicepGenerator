@@ -1,0 +1,26 @@
+[
+  {
+    "value": "Microsoft.Insights/activityLogAlerts",
+    "label": "Activity Log Alerts (Service Health)"
+  },
+  {
+    "value": "Microsoft.Insights/metricAlerts",
+    "label": "Metric Alerts"
+  },
+  {
+    "value": "Microsoft.Insights/scheduledQueryRules",
+    "label": "Log Search Alerts"
+  },
+  {
+    "value": "Microsoft.EventHub/namespaces/authorizationRules",
+    "label": "Event Hub Authorization Rules"
+  },
+  {
+    "value": "Microsoft.Insights/actionGroups",
+    "label": "Action Groups"
+  },
+  {
+    "value": "Microsoft.Insights/diagnosticSettings",
+    "label": "Diagnostic Settings"
+  }
+]

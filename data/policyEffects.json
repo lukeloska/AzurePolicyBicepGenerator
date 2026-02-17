@@ -1,0 +1,22 @@
+[
+  {
+    "value": "Audit",
+    "label": "Audit - Log non-compliant resources"
+  },
+  {
+    "value": "Deny",
+    "label": "Deny - Block non-compliant resources"
+  },
+  {
+    "value": "DeployIfNotExists",
+    "label": "Deploy If Not Exists - Auto-remediate"
+  },
+  {
+    "value": "Modify",
+    "label": "Modify - Change non-compliant resources"
+  },
+  {
+    "value": "Append",
+    "label": "Append - Add properties to resources"
+  }
+]

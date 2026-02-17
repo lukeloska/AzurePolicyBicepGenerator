@@ -1,0 +1,26 @@
+[
+  {
+    "value": "ServiceHealthAlert-Audit",
+    "label": "Audit Service Health Alerts (Custom)"
+  },
+  {
+    "value": "ServiceHealthAlert-Deny",
+    "label": "Deny Non-Compliant Service Health Alerts"
+  },
+  {
+    "value": "ServiceHealthAlert-DeployIfNotExists",
+    "label": "Deploy If Not Exists - Service Health Alert"
+  },
+  {
+    "value": "ServiceHealthAlert-Modify",
+    "label": "Modify Service Health Alert Tags"
+  },
+  {
+    "value": "EventHub-Audit",
+    "label": "Audit Event Hub Authorization Rules"
+  },
+  {
+    "value": "ActionGroup-Audit",
+    "label": "Audit Action Group Configuration"
+  }
+]
