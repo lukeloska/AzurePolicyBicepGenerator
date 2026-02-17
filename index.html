@@ -1,15 +1,50 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta http-equiv="refresh" content="0;url=Policy%20Generator.html" />
-    <title>Azure Policy Bicep Generator</title>
-  </head>
-  <body>
-    <p>
-      Redirecting to the Policy Generator —
-      <a href="Policy%20Generator.html">open the generator</a>.
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Azure Policy Bicep Generator</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; margin:0; padding:0; background:#f7f9fb; color:#0b1220 }
+    header { background: linear-gradient(90deg,#0f62fe,#2dd4bf); color:white; padding:40px 20px }
+    main { max-width:1000px; margin:28px auto; padding:0 16px }
+    .hero { display:flex; gap:24px; align-items:center }
+    .hero h1 { margin:0; font-size:28px }
+    .cta { margin-top:12px }
+    .btn { background:#0f1724;color:white;padding:10px 14px;border-radius:8px;text-decoration:none }
+    iframe { width:100%; height:720px; border:1px solid #e2e8f0; border-radius:6px }
+    footer { text-align:center; color:#475569; padding:20px 0; font-size:13px }
+    @media (max-width:700px){ .hero{flex-direction:column;align-items:flex-start} iframe{height:520px} }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hero">
+      <div>
+        <h1>Azure Policy Bicep Generator</h1>
+        <p>Generate Azure Policy Bicep templates for Service Health Alerts — configure rules, effects, scopes, and copy Bicep for deployment.</p>
+        <p class="cta"><a class="btn" href="Policy%20Generator.html" target="_blank" rel="noopener">Open Generator (new tab)</a></p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Run the generator inline</h2>
+      <p>The interactive generator is embedded below. If you prefer a larger view, use the "Open Generator" button.</p>
+      <iframe src="Policy%20Generator.html" title="Policy Generator"></iframe>
+    </section>
+    <section style="margin-top:20px">
+      <h3>Source & License</h3>
+      <p>This project is available on <a href="https://github.com/lukeloska/AzurePolicyBicepGenerator" target="_blank" rel="noopener">GitHub</a>. Licensed under MIT.</p>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Luke Loska — Azure Policy Bicep Generator
+  </footer>
+</body>
+</html>
     </p>
   </body>
 </html>
