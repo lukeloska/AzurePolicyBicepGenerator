@@ -1,0 +1,24 @@
+[
+  { "value": "eastus", "label": "East US (eastus)" },
+  { "value": "eastus2", "label": "East US 2 (eastus2)" },
+  { "value": "centralus", "label": "Central US (centralus)" },
+  { "value": "westus", "label": "West US (westus)" },
+  { "value": "westeurope", "label": "West Europe (westeurope)" },
+  { "value": "northeurope", "label": "North Europe (northeurope)" },
+  { "value": "southeastasia", "label": "Southeast Asia (southeastasia)" },
+  { "value": "eastasia", "label": "East Asia (eastasia)" },
+  { "value": "uksouth", "label": "UK South (uksouth)" },
+  { "value": "ukwest", "label": "UK West (ukwest)" },
+  { "value": "australiaeast", "label": "Australia East (australiaeast)" },
+  {
+    "value": "australiasoutheast",
+    "label": "Australia Southeast (australiasoutheast)"
+  },
+  { "value": "japaneast", "label": "Japan East (japaneast)" },
+  { "value": "japanwest", "label": "Japan West (japanwest)" },
+  { "value": "canadacentral", "label": "Canada Central (canadacentral)" },
+  { "value": "canadaeast", "label": "Canada East (canadaeast)" },
+  { "value": "southcentralus", "label": "South Central US (southcentralus)" },
+  { "value": "westeurope", "label": "West Europe (westeurope)" },
+  { "value": "brazilsouth", "label": "Brazil South (brazilsouth)" }
+]

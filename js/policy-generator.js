@@ -189,7 +189,8 @@ function loadAllSelectData() {
     policyEffect: 'data/policyEffects.json',
     resourceType: 'data/resourceTypes.json',
     eventTypes: 'data/eventTypes.json',
-    assignmentScope: 'data/assignmentScopes.json'
+    assignmentScope: 'data/assignmentScopes.json',
+    location: 'data/locations.json'
   };
   
   return loadMultipleSelects(selectMapping);

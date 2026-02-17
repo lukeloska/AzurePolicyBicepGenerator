@@ -157,15 +157,15 @@
           <label for="location"
             >Deployment Location <span aria-label="required">*</span></label
           >
-          <input
-            type="text"
+          <select
             id="location"
             name="location"
-            placeholder="eastus"
             aria-describedby="locationHint"
             aria-required="true"
             required
-          />
+          >
+            <option value="">Loading regions...</option>
+          </select>
           <span class="hint-text" id="locationHint"
             >Azure region for policy assignment</span
           >
