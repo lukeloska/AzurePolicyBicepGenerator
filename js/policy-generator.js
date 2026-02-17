@@ -348,6 +348,23 @@ document.addEventListener("DOMContentLoaded", function () {
     assignmentScopeSelect.addEventListener('change', updateScopeHint);
     // initialize hint based on current value (if any)
     updateScopeHint();
+
+    // Region search/filter for the location select
+    const locationSelect = document.getElementById('location');
+    const locationSearch = document.getElementById('locationSearch');
+    if (locationSelect && locationSearch) {
+      locationSearch.addEventListener('input', function () {
+        const q = this.value.trim().toLowerCase();
+        Array.from(locationSelect.options).forEach((opt) => {
+          // keep the empty placeholder visible
+          if (!opt.value) {
+            opt.hidden = false;
+            return;
+          }
+          opt.hidden = q.length > 0 && !opt.textContent.toLowerCase().includes(q);
+        });
+      });
+    }
   }).catch((err) => console.error('Failed to load select data:', err));
 
   // Setup tag management
