@@ -153,11 +153,11 @@ resource policyAssignment 'Microsoft.Authorization/policyAssignments@2023-04-01'
   identity: {
     type: 'SystemAssigned'
   }
-  properties: {
-    displayName: '${formData.displayName || formData.policyName} - Assignment'
+    properties: {
+      displayName: '${formData.displayName || formData.policyName} - Assignment'
     description: 'Assignment of ${formData.policyName} to ${formData.assignmentScope}'
     policyDefinitionId: policyDef.id
-    scope: '/subscriptions/${extractSubscriptionId(formData.scopeId)}'
+    scope: '${formData.scopeId}'
     parameters: {
       effect: {
         value: '${formData.policyEffect}'
