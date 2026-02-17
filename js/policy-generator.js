@@ -331,18 +331,35 @@ document.addEventListener("DOMContentLoaded", function () {
     const assignmentScopeSelect = document.getElementById('assignmentScope');
     const scopeHint = document.getElementById('scopeIdHint');
 
+    // Prefill logic: set hint text and optionally prefill the scopeId input
     function updateScopeHint() {
       if (!assignmentScopeSelect || !scopeHint) return;
       const v = assignmentScopeSelect.value;
       let text = 'Full resource ID of the scope (Subscription, Management Group, or Resource Group)';
+      let exampleValue = '';
       if (v === 'Subscription') {
         text = 'Subscription scope example: /subscriptions/{subscriptionId}';
+        exampleValue = '/subscriptions/{subscriptionId}';
       } else if (v === 'ManagementGroup') {
         text = 'Management group scope example: /providers/Microsoft.Management/managementGroups/{managementGroupId}';
+        exampleValue = '/providers/Microsoft.Management/managementGroups/{managementGroupId}';
       } else if (v === 'ResourceGroup') {
         text = 'Resource group scope example: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}';
+        exampleValue = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}';
       }
       scopeHint.textContent = text;
+
+      // Prefill the Scope ID input only when it's empty or previously auto-filled
+      const scopeInput = document.getElementById('scopeId');
+      if (scopeInput) {
+        const current = (scopeInput.value || '').trim();
+        // store last auto-filled example on the element dataset to avoid overwriting user input
+        const lastPrefill = scopeInput.dataset.lastPrefill || '';
+        if (!current || current === lastPrefill) {
+          scopeInput.value = exampleValue;
+          scopeInput.dataset.lastPrefill = exampleValue;
+        }
+      }
     }
 
     assignmentScopeSelect.addEventListener('change', updateScopeHint);
