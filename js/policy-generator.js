@@ -325,8 +325,29 @@ document.addEventListener("DOMContentLoaded", function () {
     darkModeToggle.textContent = isNowDark ? "☀️" : "🌙";
   });
 
-  // Load data
-  loadAllSelectData();
+  // Load data and then wire up assignment scope -> scope hint behavior
+  loadAllSelectData().then(() => {
+    const assignmentScopeSelect = document.getElementById('assignmentScope');
+    const scopeHint = document.getElementById('scopeIdHint');
+
+    function updateScopeHint() {
+      if (!assignmentScopeSelect || !scopeHint) return;
+      const v = assignmentScopeSelect.value;
+      let text = 'Full resource ID of the scope (Subscription, Management Group, or Resource Group)';
+      if (v === 'Subscription') {
+        text = 'Subscription scope example: /subscriptions/{subscriptionId}';
+      } else if (v === 'ManagementGroup') {
+        text = 'Management group scope example: /providers/Microsoft.Management/managementGroups/{managementGroupId}';
+      } else if (v === 'ResourceGroup') {
+        text = 'Resource group scope example: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}';
+      }
+      scopeHint.textContent = text;
+    }
+
+    assignmentScopeSelect.addEventListener('change', updateScopeHint);
+    // initialize hint based on current value (if any)
+    updateScopeHint();
+  }).catch((err) => console.error('Failed to load select data:', err));
 
   // Setup tag management
   document.getElementById('addTagBtn').addEventListener('click', (e) => {
