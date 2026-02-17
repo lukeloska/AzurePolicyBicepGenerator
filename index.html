@@ -1,49 +1,267 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Azure Policy Bicep Generator</title>
-  <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; margin:0; padding:0; background:#f7f9fb; color:#0b1220 }
-    header { background: linear-gradient(90deg,#0f62fe,#2dd4bf); color:white; padding:40px 20px }
-    main { max-width:1000px; margin:28px auto; padding:0 16px }
-    .hero { display:flex; gap:24px; align-items:center }
-    .hero h1 { margin:0; font-size:28px }
-    .cta { margin-top:12px }
-    .btn { background:#0f1724;color:white;padding:10px 14px;border-radius:8px;text-decoration:none }
-    iframe { width:100%; height:720px; border:1px solid #e2e8f0; border-radius:6px }
-    footer { text-align:center; color:#475569; padding:20px 0; font-size:13px }
-    @media (max-width:700px){ .hero{flex-direction:column;align-items:flex-start} iframe{height:520px} }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="hero">
-      <div>
-        <h1>Azure Policy Bicep Generator</h1>
-        <p>Generate Azure Policy Bicep templates for Service Health Alerts — configure rules, effects, scopes, and copy Bicep for deployment.</p>
-        <p class="cta"><a class="btn" href="Policy%20Generator.html" target="_blank" rel="noopener">Open Generator (new tab)</a></p>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Azure Policy Bicep Generator - Service Health Alerts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header-top">
+        <div>
+          <h1>Azure Policy Bicep Generator</h1>
+          <h2>Service Health Alerts Compliance Policy</h2>
+        </div>
+        <button
+          id="darkModeToggle"
+          class="dark-mode-toggle"
+          aria-label="Toggle dark mode"
+          title="Toggle dark mode"
+        >
+          🌙
+        </button>
+      </div>
+
+      <form id="policyForm">
+        <!-- Policy Basics -->
+        <fieldset>
+          <legend>Policy Configuration</legend>
+
+          <label for="policyName"
+            >Policy Name <span aria-label="required">*</span></label
+          >
+          <input
+            type="text"
+            id="policyName"
+            name="policyName"
+            placeholder="e.g., Enforce-ServiceHealthAlerts"
+            aria-describedby="policyNameHint"
+            aria-required="true"
+            required
+          />
+          <span class="hint-text" id="policyNameHint"
+            >Use alphanumeric characters and hyphens (1-64 chars)</span
+          >
+
+          <label for="policyDescription"
+            >Policy Description <span aria-label="required">*</span></label
+          >
+          <textarea
+            id="policyDescription"
+            name="policyDescription"
+            placeholder="Describe the policy's purpose and scope"
+            aria-describedby="descriptionHint"
+            aria-required="true"
+            required
+            rows="3"
+          ></textarea>
+          <span class="hint-text" id="descriptionHint"
+            >Maximum 512 characters</span
+          >
+        </fieldset>
+
+        <!-- Policy Parameters -->
+        <fieldset>
+          <legend>Policy Parameters</legend>
+
+          <label for="policyEffect"
+            >Policy Effect <span aria-label="required">*</span></label
+          >
+          <select
+            id="policyEffect"
+            name="policyEffect"
+            aria-describedby="effectHint"
+            aria-required="true"
+            required
+          >
+            <option value="">Loading effects...</option>
+          </select>
+          <span class="hint-text" id="effectHint"
+            >Determines what happens to non-compliant resources</span
+          >
+
+          <label for="resourceType"
+            >Resource Type <span aria-label="required">*</span></label
+          >
+          <select
+            id="resourceType"
+            name="resourceType"
+            aria-describedby="resourceTypeHint"
+            aria-required="true"
+            required
+          >
+            <option value="">Loading resource types...</option>
+          </select>
+          <span class="hint-text" id="resourceTypeHint"
+            >Which Azure resource type to monitor</span
+          >
+
+          <label for="eventTypes"
+            >Event Types (hold Ctrl or Cmd to select multiple)</label
+          >
+          <select
+            id="eventTypes"
+            name="eventTypes"
+            multiple
+            aria-describedby="eventTypesHint"
+          >
+            <option value="">Loading event types...</option>
+          </select>
+          <span class="hint-text" id="eventTypesHint"
+            >Service Health Alert categories to monitor</span
+          >
+        </fieldset>
+
+        <!-- Assignment Configuration -->
+        <fieldset>
+          <legend>Policy Assignment</legend>
+
+          <label for="assignmentScope"
+            >Assignment Scope <span aria-label="required">*</span></label
+          >
+          <select
+            id="assignmentScope"
+            name="assignmentScope"
+            aria-describedby="scopeHint"
+            aria-required="true"
+            required
+          >
+            <option value="">Loading scopes...</option>
+          </select>
+          <span class="hint-text" id="scopeHint"
+            >Where this policy will be enforced</span
+          >
+
+          <label for="scopeId"
+            >Scope ID <span aria-label="required">*</span></label
+          >
+          <input
+            type="text"
+            id="scopeId"
+            name="scopeId"
+            placeholder="/subscriptions/00000000-0000-0000-0000-000000000000"
+            aria-describedby="scopeIdHint"
+            aria-required="true"
+            required
+          />
+          <span class="hint-text" id="scopeIdHint"
+            >Full resource ID of the scope (Subscription, Management Group, or
+            Resource Group)</span
+          >
+
+          <label for="location"
+            >Deployment Location <span aria-label="required">*</span></label
+          >
+          <input
+            type="text"
+            id="location"
+            name="location"
+            placeholder="eastus"
+            aria-describedby="locationHint"
+            aria-required="true"
+            required
+          />
+          <span class="hint-text" id="locationHint"
+            >Azure region for policy assignment</span
+          >
+
+          <label for="displayName">Display Name</label>
+          <input
+            type="text"
+            id="displayName"
+            name="displayName"
+            placeholder="Audit Service Health Alerts"
+            aria-describedby="displayNameHint"
+          />
+          <span class="hint-text" id="displayNameHint"
+            >User-friendly name for the policy (optional)</span
+          >
+        </fieldset>
+
+        <!-- Tags -->
+        <fieldset>
+          <legend>Tags (Optional)</legend>
+          <div id="tagsContainer">
+            <div class="tag-row">
+              <input
+                type="text"
+                class="tag-key"
+                placeholder="Key (e.g., Environment)"
+              />
+              <input
+                type="text"
+                class="tag-value"
+                placeholder="Value (e.g., Production)"
+              />
+              <button
+                type="button"
+                class="btn-remove-tag"
+                aria-label="Remove tag"
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+          <button type="button" id="addTagBtn" aria-label="Add new tag">
+            + Add Tag
+          </button>
+        </fieldset>
+
+        <!-- Form Actions -->
+        <div style="display: flex; gap: 12px">
+          <button type="submit">Generate Policy Bicep</button>
+          <button
+            type="reset"
+            id="clearBtn"
+            aria-label="Clear all form fields and reset to defaults"
+          >
+            Clear Form
+          </button>
+        </div>
+      </form>
+
+      <!-- Output Section -->
+      <div
+        id="output"
+        class="output-card"
+        style="display: none"
+        role="region"
+        aria-label="Generated Policy Bicep template"
+      >
+        <pre><code id="bicepCode" class="language-bicep"></code></pre>
+      </div>
+
+      <button
+        id="copyBtn"
+        class="copy-btn"
+        disabled
+        aria-label="Copy generated template to clipboard"
+      >
+        Copy to Clipboard
+      </button>
+
+      <!-- Toast Notification -->
+      <div
+        id="toast"
+        class="toast"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        <span id="toastMessage"></span>
       </div>
     </div>
-  </header>
 
-  <main>
-    <section>
-      <h2>Run the generator inline</h2>
-      <p>The interactive generator is embedded below. If you prefer a larger view, use the "Open Generator" button.</p>
-      <iframe src="Policy%20Generator.html" title="Policy Generator"></iframe>
-    </section>
-    <section style="margin-top:20px">
-      <h3>Source & License</h3>
-      <p>This project is available on <a href="https://github.com/lukeloska/AzurePolicyBicepGenerator" target="_blank" rel="noopener">GitHub</a>. Licensed under MIT.</p>
-    </section>
-  </main>
-
-  <footer>
-    © 2026 Luke Loska — Azure Policy Bicep Generator
-  </footer>
-</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="js/dataLoader.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/policy-generator.js"></script>
+  </body>
 </html>
     </p>
   </body>
