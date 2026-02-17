@@ -190,7 +190,7 @@ function loadAllSelectData() {
     resourceType: 'data/resourceTypes.json',
     eventTypes: 'data/eventTypes.json',
     assignmentScope: 'data/assignmentScopes.json',
-    location: 'data/locations.json'
+    location: 'data/regions.json'
   };
   
   return loadMultipleSelects(selectMapping);
