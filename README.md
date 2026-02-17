@@ -19,7 +19,7 @@ A web-based tool for generating Azure Policy Bicep templates for Service Health 
 
 ```
 AzurePolicyBicepGenerator/
-├── Policy Generator.html      # Main HTML form
+├── index.html                 # Main HTML form (serves the generator)
 ├── js/
 │   ├── dataLoader.js         # Generic JSON data loader
 │   ├── validation.js         # Form validation rules
@@ -58,31 +58,27 @@ python -m http.server 8000
 3. Open your browser and navigate to:
 
 ```
-http://localhost:8000/Policy\ Generator.html
+http://localhost:8000/
 ```
 
 ## Usage
 
 1. **Fill in Policy Details**:
-
    - Policy Name: Unique identifier for your policy
    - Policy Description: Explain what the policy does
    - Display Name: User-friendly name (optional)
 
 2. **Configure Policy Parameters**:
-
    - Select Policy Effect (Audit, Deny, etc.)
    - Choose Resource Type to monitor
    - Select Event Types relevant to your use case
    - Set Assignment Scope (where policy will be applied)
 
 3. **Set Deployment Parameters**:
-
    - Scope ID: Full resource path of assignment target
    - Location: Azure region for deployment
 
 4. **Add Tags** (Optional):
-
    - Click "Add Tag" to add custom key-value pairs
    - Remove tags as needed
 
@@ -166,7 +162,7 @@ To extend this tool:
 1. Add new data files in `/data/` directory
 2. Update the `loadAllSelectData()` function in `policy-generator.js`
 3. Add validation rules to `validation.js` if needed
-4. Update form fields in `Policy Generator.html`
+4. Update form fields in `index.html`
 
 ## License
 
